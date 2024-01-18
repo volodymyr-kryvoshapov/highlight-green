@@ -96,8 +96,6 @@ async function apiCall (name) {
       redirect: 'follow'
     })
 
-    console.info(`API call made`)
-
     if (response.ok) {
       return response.json()
     }
