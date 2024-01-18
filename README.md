@@ -1,6 +1,6 @@
 # Options
 
-API KEY must be replaced with your own API key from https://api.dilisense.com
+API KEY must be replaced with your own API key from https://dilisense.com account.
 
 Modify in code:
 
