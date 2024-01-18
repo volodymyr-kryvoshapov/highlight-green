@@ -1,5 +1,5 @@
 const VALIDATION_INTERVAL = 5000 // 5 seconds
-const API_KEY = 'xxx'
+const API_KEY = 'replace-this-with-your-own-api-key'
 const NAME_STR_REG_EXP = /^Confirm that the payment is from (.*) \(buyer's name\).$/
 const SEVERAL_SPACES_REG_EXP = /\s+/g
 const VALIDATION_STATUS = {
@@ -64,24 +64,24 @@ function isAlreadyValidated (name) {
 }
 
 async function validateName (name) {
-  // try {
-  //   const data = await apiCall(name)
-  //
-  //   if (data?.total_hits === 0) {
-  //     return VALIDATION_STATUS.NOT_FOUND
-  //   }
-  //
-  //   if (
-  //     Array.isArray(data?.found_records)
-  //     && data.found_records?.length > 0
-  //     && INVALID_SOURCE_TYPES.includes(data.found_records[0]?.source_type)
-  //   ) {
-  //     return VALIDATION_STATUS.INVALID
-  //   }
-  // } catch (error) {
-  //   console.error(error)
-  //   return VALIDATION_STATUS.ERROR
-  // }
+  try {
+    const data = await apiCall(name)
+
+    if (data?.total_hits === 0) {
+      return VALIDATION_STATUS.NOT_FOUND
+    }
+
+    if (
+      Array.isArray(data?.found_records)
+      && data.found_records?.length > 0
+      && INVALID_SOURCE_TYPES.includes(data.found_records[0]?.source_type)
+    ) {
+      return VALIDATION_STATUS.INVALID
+    }
+  } catch (error) {
+    console.error(error)
+    return VALIDATION_STATUS.ERROR
+  }
 
   return VALIDATION_STATUS.VALID
 }
